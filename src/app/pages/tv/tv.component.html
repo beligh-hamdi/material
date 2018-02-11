@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Tv</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+    
+          <mat-form-field>
+              <mat-select placeholder="Channels" [(ngModel)]="channelModel" (ngModelChange)="onChannelModelChange()">
+                <mat-option *ngFor="let channel of channels" [value]="channel.name">
+                    {{ channel.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+      
+          <div *ngIf="channel">
+              <img src="{{ channel.logo }}">
+          </div>
+        
+          <div *ngIf="channel && channel.type === 'iframe'">
+              <iframe width="98%" 
+              frameborder="0" 
+              marginheight="0" 
+              marginwidth="0" 
+              scrolling="no" 
+              [src]="channel.src  | safeHtml" 
+              id="WOL" hspace="0" vspace="0" height="480" 
+              allowfullscreen="" 
+              webkitallowfullscreen="" 
+              mozallowfullscreen="" 
+              oallowfullscreen="" 
+              msallowfullscreen="">
+            </iframe>
+        </div>
+        <div *ngIf="channel && channel.id === 3">
+            <video 
+              data-html5-video="" 
+              preload="metadata" 
+              src="blob:http://webtvonlive.com/90829575-cdfd-4411-abb2-6d39579ff49d">
+            </video>
+        </div>
+
+
+
+    </mat-card-content>
+  </mat-card>
+ 
